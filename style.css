@@ -1,0 +1,598 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+
+    color: #00ffaa;
+    font-weight: bold;
+    text-shadow: 
+        0 0 5px #003333,
+        0 0 10px #001111,
+        2px 2px 6px black;
+
+    /* 🌄 GLOBAL BACKGROUND */
+    background: url("highway.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* subtle overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    pointer-events: none;
+}
+
+img {
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+/* --------------------- */
+/* GLOBAL SCREEN */
+/* --------------------- */
+
+.screen{
+    text-align:center;
+    background: transparent;
+}
+
+/* --------------------- */
+/* SCREEN 1 */
+/* --------------------- */
+
+#screen1 {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --------------------- */
+/* IMAGE CONTROL */
+/* --------------------- */
+
+img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+#fallingBike,
+#bonkImage,
+#bike90 {
+    max-width: 500px;
+}
+
+/* --------------------- */
+
+@keyframes shake {
+    0% { transform: translate(0px, 0px); }
+    20% { transform: translate(-10px, 5px); }
+    40% { transform: translate(10px, -5px); }
+    60% { transform: translate(-8px, 4px); }
+    80% { transform: translate(8px, -4px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+.shake {
+    animation: shakeScreen 0.5s;
+}
+
+@keyframes shakeScreen {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-10px, 5px); }
+    40% { transform: translate(10px, -5px); }
+    60% { transform: translate(-8px, 4px); }
+    80% { transform: translate(8px, -4px); }
+    100% { transform: translate(0, 0); }
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 98px;
+    height: 38px;
+    border-radius: 50%;
+    background: #5e07e1;
+    cursor: pointer;
+
+    box-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+}
+
+.bike {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    width: auto;
+    height: 780px;
+    transition: transform 0.1s linear;
+}
+
+@keyframes idle{
+    0%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+    100%{ transform:translateY(0); }
+}
+
+.info{
+    margin-top:20px;
+    line-height:2;
+    font-size: 28px; 
+}
+
+button{
+    margin-top:80px;
+    padding:15px 40px;
+    border:none;
+    background:#00ff88;
+    color:black;
+    font-size:68px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#sliderArea {
+    display: none;
+}
+
+.speed{
+    font-size:80px;
+    margin-bottom:20px;
+}
+
+#speedSlider{
+    width:800px;
+}
+
+.slideText{
+    margin-top:65px;
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; }
+    to{ opacity:1; }
+}
+
+.engineOn{
+    animation: vibrate .08s infinite;
+}
+
+@keyframes vibrate{
+    0%{ transform:translateX(0); }
+    25%{ transform:translateX(-2px); }
+    50%{ transform:translateX(2px); }
+    75%{ transform:translateX(-2px); }
+    100%{ transform:translateX(0); }
+}
+
+.smoke{
+    width:60px;
+    height:80px;
+    background:white;
+    border-radius:50%;
+    margin:auto;
+    opacity:0;
+}
+
+.showSmoke{
+    animation: smoke 1s infinite;
+}
+
+@keyframes smoke{
+    from{
+        opacity:1;
+        transform: translateY(0) scale(.5);
+    }
+    to{
+        opacity:0;
+        transform: translateY(-80px) scale(2);
+    }
+}
+
+.rideAway{
+    animation: rideAway 1.5s forwards linear;
+}
+
+@keyframes rideAway{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(150vw); }
+}
+
+/* --------------------- */
+/* WARNING SCREEN */
+/* --------------------- */
+
+#warningScreen{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:100;
+}
+
+#warningText{
+    font-size:90px;
+    color:red;
+    font-weight:bold;
+    letter-spacing:10px;
+}
+
+#warningSpeed{
+    margin-top:30px;
+    font-size:30px;
+    color:white;
+    opacity:0;
+}
+
+/* --------------------- */
+/* SCREEN 2 */
+/* --------------------- */
+
+#screen2{
+    position:fixed;
+    inset:0;
+    background: transparent;
+    display:none;
+    overflow:hidden;
+}
+
+#crater{
+    position:absolute;
+    width:700px;
+    max-width:90vw;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    z-index:20;
+    border:3px solid red;
+}
+
+#fallingBike{
+    position:absolute;
+    width:180px;
+    left:50%;
+    top:-250px;
+    transform:translateX(-50%);
+    z-index:10;
+}
+
+.fall{
+    animation:fallBike 2.5s forwards;
+}
+
+#fallText{
+    position:absolute;
+    top:120px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:28px;
+    opacity:0;
+}
+
+@keyframes fallBike{
+    0%{
+        top:-250px;
+        transform: translateX(-50%) rotate(0deg);
+        opacity:1;
+    }
+    70%{
+        top:45%;
+        transform: translateX(-50%) rotate(180deg);
+        opacity:1;
+    }
+    100%{
+        top:60%;
+        transform: translateX(-50%) rotate(280deg);
+        opacity:0;
+    }
+}
+
+#statusText{
+    position:absolute;
+    top:60px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:32px;
+    opacity:0;
+}
+
+#helpBtn{
+    position:absolute;
+    top:150px;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:0;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    0%{ transform: translateX(-50%) scale(1); }
+    50%{ transform: translateX(-50%) scale(1.1); }
+    100%{ transform: translateX(-50%) scale(1); }
+}
+
+.crashShake{
+    animation:crashShake .4s 3;
+}
+
+@keyframes crashShake{
+    0%{ transform:translateX(-10px); }
+    50%{ transform:translateX(10px); }
+    100%{ transform:translateX(-10px); }
+}
+
+/* ---------------- */
+/* SCREEN 3 */
+/* ---------------- */
+
+#screen3{
+    position:fixed;
+    inset:0;
+    background: transparent;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+#testerImage{
+    width:1000px;
+    opacity:0;
+    height:800px;
+}
+
+.testerEntry{
+    animation: testerEntry 1s forwards;
+}
+
+@keyframes testerEntry{
+    from{
+        transform: translateY(-300px);
+        opacity:0;
+    }
+    to{
+        transform: translateY(0);
+        opacity:1;
+    }
+}
+
+#testerBubble{
+    margin-top:20px;
+    font-size:32px;
+    color:white;
+    opacity:0;
+    z-index:5;
+}
+
+#trustButtons{
+    margin-top:30px;
+    gap:20px;
+    z-index:20;
+}
+
+.trustBtn{
+    background:#00ff88;
+    color:black;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#yesBtn{ transition:.4s; }
+#noBtn{ transition:.4s; }
+
+/* ---------------- */
+/* SCREEN 4 */
+/* ---------------- */
+
+#screen4{
+    position:fixed;
+    inset:0;
+    background: transparent;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+#bonkText{
+    color:white;
+    font-size:45px;
+    text-align:center;
+}
+
+#bonkImage{
+    width:2050px;
+    opacity:0;
+    margin-top:40px;
+    height:1000px ;
+}
+
+.bonkDrop{
+    animation:bonkDrop .5s forwards;
+}
+
+@keyframes bonkDrop{
+    0%{
+        transform: translateY(-500px);
+        opacity:0;
+    }
+    70%{
+        transform: translateY(30px);
+        opacity:1;
+    }
+    100%{
+        transform: translateY(0);
+        opacity:1;
+    }
+}
+
+.screenShake{
+    animation:screenShake .2s 8;
+}
+
+@keyframes screenShake{
+    0%{ transform:translateX(-10px); }
+    50%{ transform:translateX(10px); }
+    100%{ transform:translateX(-10px); }
+}
+
+#popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+#popupBox{
+    background:#111;
+    border:2px solid #00ff88;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    color:white;
+}
+
+#popupOk{
+    margin-top:20px;
+    padding:12px 30px;
+    background:#00ff88;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#birds{
+    position:absolute;
+    top:150px;
+    font-size:50px;
+    opacity:0;
+}
+
+.flyBirds{
+    animation:flyBirds 7s linear infinite;
+}
+
+@keyframes flyBirds{
+    0%{
+        transform: rotate(0deg) translateX(80px) rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg) translateX(80px) rotate(-360deg);
+    }
+}
+
+#restartBtn{
+    margin-top:40px;
+    padding:15px 40px;
+    background:#00ff88;
+    border:none;
+    border-radius:10px;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+}
+
+/* ---------------- */
+/* SCREEN 5 */
+/* ---------------- */
+
+#screen5{
+    position:fixed;
+    inset:0;
+
+    background: url("highway.png") no-repeat center center;
+    background-size: cover;
+
+    display:none;
+    overflow:hidden;
+}
+
+#safeText{
+    position:absolute;
+    top:50px;
+    width:100%;
+    text-align:center;
+    font-size:40px;
+    color:white;
+}
+
+#bike90{
+    position:absolute;
+    bottom:120px;
+    left:-300px;
+    width:1050px;
+    height:800px ;
+}
+
+.safeRide{
+
+    animation:safeRide 4s linear forwards;
+}
+
+@keyframes safeRide{
+
+    from{
+
+        left:-300px;
+
+    }
+
+    to{
+
+        left:110%;
+
+    }
+
+}
+
+#balloonScreen{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, 100%); /* start below screen */
+
+    width: 60vw;
+    max-width: 1000px;
+    height: auto;
+
+    img:not(#balloonScreen) {
+        -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+        mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    }
+}
+
+.balloonRise{
+
+    animation:balloonRise 5s forwards;
+}
+
+@keyframes balloonRise{
+    from{
+        transform: translate(-50%, 100%);   /* starts below */
+    }
+    to{
+        transform: translate(-50%, -50%);   /* 🔥 perfectly centered */
+    }
+}

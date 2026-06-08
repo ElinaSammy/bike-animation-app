@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Week - Ride Begins</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="screen1" class="screen">
+
+        <button id="startBtn">
+            START RIDE
+        </button>
+
+        <div class="roadScene">
+            <img src="bike.png" class="bike" id="bike">
+        </div>
+    
+        <div id="uiPanel">
+    
+            <div class="info">
+                <p>Destination : Birthday Week</p>
+                <p>Fuel : 100%</p>
+                <p>Mood : Ready</p>
+            </div>
+        
+            <div id="sliderArea">
+        
+                <div class="speed">
+                    Speed : <span id="speedValue">0</span>
+                </div>
+        
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="240" 
+                    value="0" 
+                    id="speedSlider">
+        
+                <!-- <p class="slideText">LET'S GO →</p> -->
+        
+            </div>
+        
+        </div>
+    
+        <div class="smoke" id="smoke"></div>
+    
+    </div>
+    
+    
+    
+    <div id="warningScreen">
+    
+        <div id="warningText">
+            W
+        </div>
+    
+        <div id="warningSpeed">
+            240 km/h detected
+        </div>
+    
+    </div>
+    
+    
+    
+    <div id="screen2">
+    
+        <img
+            src="bike.png"
+            id="fallingBike">
+    
+        <img
+            src="bug_crater.png"
+            id="crater">
+    
+        <div id="statusText">
+    
+            Current Status:
+            <br><br>
+            Stuck in Bug Crater
+    
+        </div>
+
+        <div id="fallText">
+            AAAAAAAHHHHH
+        </div>
+    
+        <button id="helpBtn">
+            HELP
+        </button>
+    
+    </div>
+
+    <div id="screen3">
+
+        <img
+            src="tester_rescue.png"
+            id="testerImage">
+    
+        <div id="testerBubble">
+    
+            Need Help?
+    
+        </div>
+    
+        <div id="trustButtons">
+
+            <button id="yesBtn">
+                YES
+            </button>
+        
+            <button id="noBtn">
+                NO
+            </button>
+        
+        </div>
+    
+    </div>
+
+    <div id="screen4">
+
+        <div id="bonkText"></div>
+    
+        <img
+        src="tester.png" id="bonkImage">
+        
+        <div id="birds">
+
+            🐦
+        
+        </div>
+    
+        <button id="restartBtn">
+            START AGAIN
+        </button>
+    
+    </div>
+
+    <div id="popup">
+
+        <div id="popupBox">
+    
+            <h2>
+                BONK SCREEN NEXT 🔨
+            </h2>
+    
+            <button id="popupOk">
+                OK
+            </button>
+    
+        </div>
+    
+    </div>
+
+    <div id="screen5">
+
+        <div id="safeText">
+            Speed Limited To 90 😆
+        </div>
+    
+        <img
+        src="bike.png"
+        id="bike90">
+    
+        <img
+        src="lucy.png"
+        id="balloonScreen">
+    
+        <button id="continueBtn">
+            CONTINUE →
+        </button>
+    
+    </div>
+
+
+    <audio id="engineSound" src="engine-start.mp3"></audio>
+    <audio id="broomSound" src="broom.mp3"></audio>
+    <audio id="crashSound" src="crash.mp3"></audio>
+    <audio id="alarmSound" src="alarm.mp3"></audio>
+    <audio id="superheroSound" src="superhero.mp3"></audio>
+    <audio id="bonkSound" src="bonk.mp3"></audio>
+    <audio id="drumrollSound" src="drumroll.mp3"></audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
